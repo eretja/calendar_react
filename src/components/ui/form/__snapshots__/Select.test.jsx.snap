@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Select component should render correctly 1`] = `
+<label>
+  <select
+    className="select"
+  >
+    <option>
+      bitte wählen
+    </option>
+  </select>
+</label>
+`;

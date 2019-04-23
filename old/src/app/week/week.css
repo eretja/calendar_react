@@ -1,0 +1,51 @@
+.month,
+.week,
+.day {
+  display: inline-block;
+  margin: 1%;
+}
+
+.week__timeList {
+  margin-bottom: 20px;
+}
+
+.row {
+  background-color: rgb(240, 229, 240);
+  
+  
+}
+
+.week__cells {
+  height: 30px;
+  width: 90px;
+
+  max-width: 90px;
+  min-width: 90px;
+
+  overflow: hidden;
+  border: 1px solid #efcdf0;
+  
+  table-layout: fixed;
+}
+
+.week__cells--activeHour {
+  
+  box-sizing: border-box;
+  max-height: 30px;
+  width: 90px;
+  max-width: 90px;
+  border: 1px solid #efcdf0;
+  overflow: hidden;
+}
+
+.week__cells:hover {
+  overflow: auto;
+  border: 1px solid #e787eb;
+}
+
+/*row:nth-child(odd) {
+  opacity: 0.5;
+  width: 100%;
+
+
+}*/

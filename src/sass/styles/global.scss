@@ -1,0 +1,76 @@
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden; /* prevents scrollbar when using grid with ne. margin*/;
+    font-family: 'open_sansregular';
+    font-size: 16px;
+    /*line-height: 1.2;*/
+    line-height: 1.3333333;
+
+}
+
+input{
+    outline:none;
+}
+
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+:global {
+    .clearfix:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .hidden {
+        display: none;
+    }
+    .visHidden {
+        visibility: hidden;
+    }
+}
+
+button{
+    outline:none;
+    border: 0;
+}
+
+
+b{
+    font-family: 'open_sansbold';
+}
+
+
+h1 {
+    /*border:10px solid red;*/
+    font-family: 'open_sanslight';
+    font-size: 24px;
+    line-height: 1.333333333333333;
+    color: $text;
+    margin: 0;
+
+    @media (min-width: $bpMdMin) {
+        font-size: 32px;
+        line-height: 1.25;
+        //border: 10px solid red;
+    }
+
+    @media (min-width: $bpDtMin) {
+        font-size: 40px;
+        line-height: 1.2;
+    }
+}
+
+/*:global(.clearfix) {*/
+/*:after {*/
+    /*content: "";*/
+    /*clear: both;*/
+    /*display: table;*/
+/*}*/
+/*}*/

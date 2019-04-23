@@ -1,0 +1,19 @@
+.calendar__weekDay div {
+  padding: 10px;
+  margin: 18px;
+  display: inline-block;
+
+
+  // border: 1px solid grey;
+
+  // display: grid;
+  // grid-template-columns: repeat(7, 1fr);
+  color: rgb(231, 71, 183);
+  justify-content: center;
+  padding: 0;
+  border-bottom: 1px solid rgb(231, 71, 183);
+}
+
+// .calendar__weekDay div{
+//   display : inline-block;
+// }

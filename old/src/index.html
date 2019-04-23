@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang = "en"> 
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="app/calendar/calendar.css" />
+    <link rel="stylesheet" href="app/event/event.css" />
+    <link rel="stylesheet" href="styles/site/base.css" />
+    <link rel="stylesheet" href="styles/site/layout.css" />
+    <link rel="stylesheet" href="app/week/week.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="calendar" class="calendar">
+        <h3 id="header" class="header"></h3>
+        <div class="weekAndDay">
+          <div class="month">
+            <button type="button" id="monthButton" class="monthButton">
+              Month
+            </button>
+          </div>
+          <div class="week">
+            <button type="button" id="week" class="week">
+              Week
+            </button>
+          </div>
+          <div class="day">
+            <button type="button" id="day" class="day">
+              Day
+            </button>
+          </div>
+        </div>
+
+        <div class="calendar__inline-header">
+          <form class="form" id="form">  
+            <label for="month"></label>
+            <select name="month-list" id="month" class="calendar__select-month">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <label for="year"></label>
+            <select name="years-list" id="year" class="calendar__select-year">
+              <option value="2000">2000</option>
+              <option value="2001">2001</option>
+              <option value="2002">2002</option>
+              <option value="2003">2003</option>
+              <option value="2004">2004</option>
+              <option value="2005">2005</option>
+              <option value="2006">2006</option>
+              <option value="2007">2007</option>
+              <option value="2008">2008</option>
+              <option value="2009">2009</option>
+              <option value="2010">2010</option>
+              <option value="2011">2011</option>
+              <option value="2012">2012</option>
+              <option value="2013">2013</option>
+              <option value="2014">2014</option>
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+            </select>
+          </form>
+          <div class="calendar__month-on-click">
+            <a href="#" id="previous" class="calendar__previous-month"
+              >&laquo;&laquo;Previous</a
+            >
+            <a href="#" id="next" class="calendar__next-month"
+              >Next&raquo;&raquo;</a
+            >
+          </div>
+        </div>
+        <div class="table">
+          <div class="calendar__weekdays-top">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fr</div>
+            <div>Sat</div>
+            <div>Sun</div>
+          </div>
+          <div id="calendar-body" class="calendar-body"></div>
+
+         <div id="week__timeList" class="week__timeList">
+
+          </div> 
+          <div id="eventButton">
+            <button
+              type="button"
+              id="calendar__add-event-button"
+              class="calendar__add-event-button"
+            >
+              Add An Event
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="event" class="event">
+        <div id="event__form" class="event__form">
+          <div class="header"><h2>Add an event</h2></div>
+          <div class="form-group">
+            <label for="event-name">Event name: </label>
+            <input type="text" id="event-name" class="event-name" />
+          </div>
+          <div class="form-group">
+            <label for="event-location">Location:</label>
+            <input type="text" id="event-location" class="event-location" />
+          </div>
+          <div class="form-group">
+            <label for="event-time">Time: </label>
+            <input type="time" id="event-time" class="event-time" />
+          </div>
+          <input type="submit" id="event__form--submit" value="Submit" />
+          <button type="button" id="cancelButton">Cancel</button>
+        </div>
+
+        <div id="event__body" class="event__body">
+          <h3 class="event__body-header">List of saved events:</h3>
+          <div class="event__body--status"></div>
+          <div id="event--result">Please choose a date in the calendar</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app/index.js" type="module"></script>
+    <script src="app/test.js" type="module"></script>
+  </body>
+</html>
