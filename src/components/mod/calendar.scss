@@ -1,11 +1,95 @@
-div {
-  color: rgb(241, 16, 223);
-  //text-align: center;
-}
+body {
+  margin-top: 20px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    background: #eee;
+  }
 
-.calendarHeader {
-  margin: 10px;
-  color: rgb(230, 40, 198);
-  font-size: 20px;
-  font-weight: bold;
-}
+  .container{
+   .monthlabel{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+   }
+    width: 400px;
+
+    margin: auto;
+     background-color: rgb(247, 245, 247);
+    padding: 15px;
+    box-shadow: 10px 10px 20px grey;
+  }
+
+  .calendar{
+
+    &topHeader{
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px auto;
+      .month-label{
+        font-size: 28px;
+      }
+      .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  }
+    &header{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      border-bottom: 1px solid rgb(231, 71, 183);
+      > div {
+        padding: 5px 0;
+        flex: 1 1 auto;
+        min-width: 50px;
+         text-align: center;
+
+
+
+      }
+      abbr[title] {
+        text-decoration: none !important;
+        color: rgb(231, 71, 183);
+      }
+    }
+    &body{
+      .aweek {
+        display: flex;
+       padding:5px;
+        justify-content: center;
+
+      }
+
+     .select {
+    width: 200px;
+    margin: 5px;
+  }
+      .aday {
+        flex: 1 1 auto;
+        min-width: 50px;
+        padding: 5px 0;
+       margin:2px;
+       text-align: center;
+
+        &:hover {
+          cursor: pointer;
+          border-radius: 5px;
+          border-color: rgb(214, 63, 214);
+          box-shadow: 0 2px 6px RGBA(255, 50, 120, 0.9);
+          transition: all .1s ease-in-out
+        }
+      }
+      .isToday {
+        background: rgb(231, 71, 183);
+        color: #fff;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .actualDate {
+    background-color: rgb(241, 204, 239);
+  }

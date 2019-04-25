@@ -5,11 +5,11 @@ import Select from "ui/form/Select";
 import SVGPrevious from "ui/svg/Previous";
 import SVGNext from "ui/svg/Next";
 import styles from "./calendar.scss";
-import DaysOfWeek from "mod/daysOfWeek/DaysOfWeek";
 import CalendarBody from "mod/calendarBody/CalendarBody";
 import CalendarHeader from "mod/calendarHeader/CalendarHeader";
 import EventBody from "mod/eventBody/EventBody";
 import state from "./Data/state";
+
 
 class Calendar extends React.Component {
   static propTypes = {
@@ -21,109 +21,137 @@ class Calendar extends React.Component {
     text: "defaultText",
     optionsState: "text"
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      date: new Date().getDate(),
+      day: new Date().getDay(),
+      calendarDays: [],
+      calendarWeeks: [],
+      yearChoice:state.yearChoice,
+      monthChoice:state.monthChoice
+    };
+  }
 
-  state = {
-    currentDate: new Date()
+  componentDidMount() {
+    this.calendar();
+  }
+
+  calendar = () => {
+    let { year, month, date } = this.state;
+    const calendarWeeks = [],
+      calendarDays = [];
+    let firstDay = new Date(year, month).getDay() -1;
+    let daysInMonth = new Date(year, month + 1, 0).getDate();
+    let totalWeeks = Math.ceil(daysInMonth / 7);
+
+    let dates = 1;
+    for (let i = 0; i < totalWeeks * 7; i++) {
+
+      if (
+        date === new Date().getDate() &&
+        year === new Date().getFullYear() &&
+        month === new Date().getMonth()
+      ) {
+        styles.isToday
+      }
+     if (i < firstDay || i >= daysInMonth + firstDay) {
+        calendarDays.push(null);
+      } else {
+        calendarDays.push(dates);
+        dates++;
+      }
+    }
+    for (let i = 0; i < calendarDays.length; i++) {
+      calendarWeeks.push(calendarDays.splice(0, 7));
+    }
+
+    this.setState({
+      calendarDays,
+      calendarWeeks
+    });
+  };
+  updateState(element) {
+    this.setState({monthChoice: element});
+    this.setState({yearChoice: element});
+  }
+  onClick = action => {
+    let year = this.state.year;
+    let month = this.state.month;
+    month = month + action;
+
+    if (month < 0) {
+      year += action;
+      month = 11;
+    } else if (month > 11) {
+      year += action;
+      month = 0;
+    }
+    this.setState(
+      {
+        month,
+        year
+      },
+      () => {
+        this.calendar();
+      }
+    );
   };
 
-  setPreviousMonthButton(currentDate) {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    this.setState({
-      currentDate: currentDate
-    });
-    console.log(1, currentDate, this.props);
-  }
-
-  setNextMonthButton(currentDate) {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    this.setState({
-      currentDate: currentDate
-    });
-    console.log(2, currentDate, this.props);
-  }
-
-  getPreviousMonthButton(currentDate) {
-    let setPrevMonth = currentDate.getMonth();
-    let newYear = currentDate.getFullYear();
-
-    if (setPrevMonth === 0) {
-      setPrevMonth = 11;
-      newYear--;
-    } else {
-      setPrevMonth = currentDate.getMonth() - 1;
-    }
-    return setPrevMonth;
-  }
-  getNextMonthButton(currentDate) {
-    let setNextMonth = currentDate.getMonth();
-    let newYear = currentDate.getFullYear();
-
-    if (setNextMonth === 11) {
-      newYear++;
-      setNextMonth = 0;
-    } else {
-      setNextMonth = newDate.getMonth() + 1;
-    }
-    return setNextMonth;
-  }
-  handleClick() {
-    console.log("Clicked!");
-  }
-
-
-  onClick = (action) =>{
-    let year = this.state.year
-    let month = this.state.month
-    month = month + action
-    
-    
-    if(month < 0){
-      year+=action
-      month = 11
-    }else if(month > 11){
-      year+=action
-      month = 0
-    }
-    this.setState({
-      month,
-      year
-    },
-    () =>{
-      this.calendarBody()
-    })    
-  }
-
   render() {
+    const {
+      calendarWeeks,
+      year,
+      month,
+      yearChoice,
+      monthChoice
+    } = this.state;
 
     return (
-      <div>
-        <div className={styles.calendarHeader}>
-          <CalendarHeader state={state} />
+      <div className={styles.container}>
+        <div className={styles.monthlabel}>
+          {state.monthNames[month]} {year}
         </div>
-        <div>
-          <Button text="Month" onclick={this.handleClick} />
-          <Button text="Week" />
-          <Button text="Day" />
+        <div className={styles.calendar}>
+          <div className={styles.calendartopHeader}>
+            <div className={styles.button} onClick={() => this.onClick(-1)}>
+              <SVGPrevious width={20} height={10} /> Previous
+            </div>
+            <Select options={monthChoice} onChange={this.updateState.bind(this)} />
+            <Select options={yearChoice} onChange={this.updateState.bind(this)} />
+            <div className={styles.button} onClick={() => this.onClick(+1)}>
+              Next
+              <SVGNext width={20} height={10} />
+            </div>
+          </div>
+          <div className={styles.calendarheader}>
+            {state.daysOfWeek.map((items, i) => {
+              return (
+                <div className={styles.day}>
+                  <abbr title={items}>{items}</abbr>
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.calendarbody}>
+            {calendarWeeks.map((days, i) => {
+              return (
+                <div className={styles.aweek}>
+                  {days.map((day, i) => {
+                    return <div className={styles.aday}>{day}</div>;
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
-
-        <Select options={state.monthChoice} />
-        <Select options={state.yearChoice} />
-        <SVGPrevious width={20} height={10} />
-        <Button
-          text="Previous"
-          onclick={event => this.setPreviousMonthButton(this.state.currentDate)}
-        />
-        <Button
-          text="Next"
-          onclick={event => this.setNextMonthButton(this.state.currentDate)}
-        />
-        <SVGNext width={20} height={10} />
-        <DaysOfWeek />
-        <CalendarBody  state={state} currentDate={this.state.currentDate} /> 
-        {/* <EventBody />  */}
       </div>
     );
   }
 }
+
+const calendar = <Calendar showMonths={2} />;
 
 export default Calendar;
