@@ -109,11 +109,11 @@ class Calendar extends React.Component {
             <div className={styles.button} onClick={() => this.onClick(-1)}>
               <SVGPrevious width={20} height={10} /> Previous
             </div>
-            <label>
+
           <select value={this.state.value} onChange={this.handleChange}>
             <option value={monthChoice}  onChange={e => this.handleChange(e)}></option>
 
-          </select></label>
+          </select><
             <Select
               options={monthChoice}
               onChange={e => this.handleChange(e)}
